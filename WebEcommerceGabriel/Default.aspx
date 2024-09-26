@@ -19,7 +19,7 @@
         .welcome-box {
             background-color: #fff;
             padding: 20px 40px;
-            border-radius: 8px;WebEcommerceGabriel
+            border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
             margin-bottom: 70px;
         }

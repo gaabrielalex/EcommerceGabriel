@@ -311,6 +311,7 @@
     <Folder Include="resources\css\" />
     <Folder Include="Scripts\ScritpsProjeto\" />
     <Folder Include="src\components\ColunasPadraoTable\" />
+    <Folder Include="src\pages\CadastroProduto\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
