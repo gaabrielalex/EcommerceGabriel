@@ -204,6 +204,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="src\components\ModalConfirmacaoExclusao\ModalConfirmacaoExclusao.ascx" />
     <Content Include="src\components\Toast\Toast.ascx" />
+    <Content Include="src\pages\CadastroProduto\CadastroProduto.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
   </ItemGroup>
@@ -260,6 +261,13 @@
       <DependentUpon>Toast.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="src\pages\CadastroProduto\CadastroProduto.aspx.designer.vb">
+      <DependentUpon>CadastroProduto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="src\pages\CadastroProduto\CadastroProduto.aspx.vb">
+      <DependentUpon>CadastroProduto.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.vb">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -311,7 +319,6 @@
     <Folder Include="resources\css\" />
     <Folder Include="Scripts\ScritpsProjeto\" />
     <Folder Include="src\components\ColunasPadraoTable\" />
-    <Folder Include="src\pages\CadastroProduto\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
