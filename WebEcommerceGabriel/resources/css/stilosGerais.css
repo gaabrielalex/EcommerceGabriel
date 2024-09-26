@@ -1,0 +1,50 @@
+﻿
+input {
+	font-size: 18px;
+}
+
+.table-container {
+	width: 100%;
+	overflow-x: auto;
+	margin-top: 45px;
+}
+
+.table-container .table th, .table td {
+	padding: 10px;
+	border: 1px solid #ddd;
+}
+
+.table-container td {
+	border-bottom: 1px solid #ccc;
+}
+
+table .empty-data {
+	font-weight: 500
+}
+
+.erro {
+	color: #dc3545;
+}
+
+.gp-input {
+	display: inline-flex;
+	flex-direction: column;
+	margin-top: 6px;
+}
+
+.gp-container-input {
+	display: inline-flex;
+	flex-direction: column;
+}
+
+.gp-input-container-custom-validator {
+	height: 24.5px;
+}
+
+table tbody tr:hover {
+	background-color: #f9f9f9;
+}
+
+.modal table tbody tr:hover {
+	background-color: #f0f0f0;
+}
