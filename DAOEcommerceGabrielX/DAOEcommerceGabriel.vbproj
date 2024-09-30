@@ -82,6 +82,10 @@
     <Compile Include="Src\DataBase\BancoDeDados.vb" />
     <Compile Include="Src\DataBase\ParametroBDFactory.vb" />
     <Compile Include="Src\DataBase\ParametroDB.vb" />
+    <Compile Include="Src\Domain\ItemPedidoDAO\ItemVendaDAO.vb" />
+    <Compile Include="Src\Domain\ItemPedidoDAO\ItemVendaDAOFactory.vb" />
+    <Compile Include="Src\Domain\PedidoDAO\VendaDAO.vb" />
+    <Compile Include="Src\Domain\PedidoDAO\VendaDAOFactory.vb" />
     <Compile Include="Src\Domain\ProdutoDAO\ProdutoDAO.vb" />
     <Compile Include="Src\Domain\ProdutoDAO\ProdutoDAOFactory.vb" />
     <Compile Include="Src\Interfaces\IDAO.vb" />
@@ -115,5 +119,6 @@
       <Name>UtilsEcommerceGabriel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

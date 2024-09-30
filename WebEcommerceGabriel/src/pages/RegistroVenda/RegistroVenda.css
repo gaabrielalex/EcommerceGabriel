@@ -1,0 +1,28 @@
+﻿
+.conteudo-RegistroVendaPanel .row {
+	margin-bottom: 5px;
+}
+
+.conteudo-RegistroVendaPanel .row:last-child {
+	margin-top: 30px;
+}
+
+.buttons-RegistroVendaPanel {
+	display: flex;
+	justify-content: end;
+	gap: 15px;
+}
+
+.conteudo-RegistroVendaPanel {
+	width: 400px;
+}
+
+.table-container {
+	margin: 125px 50px 0px 100px;
+}
+
+.total-venda {
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 25px
+}

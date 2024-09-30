@@ -1,5 +1,6 @@
 ﻿Imports DAOEcommerceGabrielX
 Imports ModelsEcommerceGabrielX
+Imports UtilsEcommerceGabrielX
 
 Public Class ProdutoService
 
@@ -27,5 +28,14 @@ Public Class ProdutoService
 
 	Public Function DescricaoJaExiste(descricao As String) As Boolean
 		Return _produtoDAO.DescricaoJaExiste(descricao)
+	End Function
+
+	Public Function ObterSaldoEstoque(idProduto As Integer) As Integer
+		Dim produto = _produtoDAO.ObterPorId(idProduto)
+		If produto Is Nothing Then
+			Throw New Erro("Produto não encontrado")
+		End If
+
+		Return produto.SaldoEstoque
 	End Function
 End Class

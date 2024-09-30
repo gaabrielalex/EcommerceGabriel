@@ -9,7 +9,7 @@ CREATE TABLE produto (
 
 CREATE TABLE venda (
 	id_venda INT NOT NULL IDENTITY(1, 1), 
-	data_venda DATE NOT NULL DEFAULT FORMAT(getdate(), 'DD/MM/YYYY'),
+	data_venda DATE NULL DEFAULT FORMAT(getdate(), 'DD/MM/YYYY'),
 	nome_cliente varchar(100) NOT NULL,
 	vlr_total numeric(10,2) NOT NULL CHECK (vlr_total > 0),
 	PRIMARY KEY(id_venda)

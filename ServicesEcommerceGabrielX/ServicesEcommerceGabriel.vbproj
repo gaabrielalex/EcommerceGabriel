@@ -79,6 +79,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Src\PedidoService\VendaService.vb" />
+    <Compile Include="Src\PedidoService\VendaServiceFactory.vb" />
     <Compile Include="Src\ProdutoService\ProdutoService.vb" />
     <Compile Include="Src\ProdutoService\ProdutoServiceFactory.vb" />
   </ItemGroup>
@@ -109,6 +111,10 @@
     <ProjectReference Include="..\ModelsEcommerceGabrielX\ModelsEcommerceGabriel.vbproj">
       <Project>{F56B9585-76CC-4E2D-8903-8AAA5EA05E87}</Project>
       <Name>ModelsEcommerceGabriel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UtilsEcommerceGabrielX\UtilsEcommerceGabriel.vbproj">
+      <Project>{F5504684-43DD-4155-A178-BD0F73F7C02F}</Project>
+      <Name>UtilsEcommerceGabriel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
