@@ -1,6 +1,7 @@
 ﻿Imports ModelsEcommerceGabrielX
 Imports ServicesEcommerceGabrielX
 Imports UtilsEcommerceGabrielX
+Imports WebEcommerceGabriel.MensagemInfo
 
 Public Class RegistroVenda
 	Inherits System.Web.UI.Page
@@ -18,6 +19,7 @@ Public Class RegistroVenda
 		End Get
 		Set(value As List(Of ItemVenda))
 			ViewState("ItensVenda") = value
+			TotalVendaLabel.Text = "Total Venda: R$ " + CalcularTotalVenda().ToString()
 		End Set
 	End Property
 
@@ -34,7 +36,6 @@ Public Class RegistroVenda
 		PrecoUnitTextFormField.Text = produto.PrecoUnitario.ToString()
 	End Sub
 
-
 	Private Sub CarregarProdutos()
 		Dim produtoService As ProdutoService = ProdutoServiceFactory.Criar()
 		Dim produtos As List(Of Produto) = _produtoService.ListarTodos()
@@ -47,24 +48,32 @@ Public Class RegistroVenda
 	End Sub
 
 	Protected Sub InserirItemButton_Click(sender As Object, e As EventArgs)
-		Dim idProduto As Integer = ProdutosDropDownList.SelectedValue
-		Dim produto As Produto = _produtoService.ObterPorId(idProduto)
-		Dim quantidade As Integer = Integer.Parse(QuantidadeTextFormField.Text)
-		Dim precoUnitario As Decimal = Decimal.Parse(PrecoUnitTextFormField.Text)
+		Dim itemVenda As ItemVenda = ObterItemVenda()
 
-		Dim itemVenda As ItemVenda = New ItemVenda(
-			idVenda:=1,
-			produto:=produto,
-			quantidade:=quantidade,
-			precoUnitario:=precoUnitario
-		)
+		For Each item As ItemVenda In Me.ItensVenda
+			If item.Produto.IdProduto = itemVenda.Produto.IdProduto Then
+				PageUtils.MostrarMensagemViaToast("Produto já inserido!", TiposMensagem.Erro, Me)
+				Return
+			End If
+		Next
+
+		Dim saldoEstoque As Integer
+		Try
+			saldoEstoque = _produtoService.ObterSaldoEstoque(itemVenda.Produto.IdProduto)
+			If saldoEstoque < itemVenda.Quantidade Then
+				PageUtils.MostrarMensagemViaToast("Saldo em estoque insuficiente! Saldo atual: " + saldoEstoque.ToString(), TiposMensagem.Erro, Me)
+				Return
+			End If
+		Catch ex As Exception
+			PageUtils.MostrarMensagemViaToast(_errorHandler.HandleErrorMessage("Erro ao obter saldo em estoque", ex), TiposMensagem.Erro, Me)
+		End Try
 
 		Dim ItensVenda As List(Of ItemVenda) = Me.ItensVenda
 		ItensVenda.Add(itemVenda)
 		Me.ItensVenda = ItensVenda
 
 		BindItensVenda()
-		QuantidadeTextFormField.Text = ""
+		ResetarCamposItemVenda()
 	End Sub
 
 	Private Sub BindItensVenda()
@@ -72,12 +81,70 @@ Public Class RegistroVenda
 		ItensVendaGW.DataBind()
 	End Sub
 
-	Protected Sub GerarVendaButton_Click(sender As Object, e As EventArgs)
-
+	Private Sub ResetarCamposItemVenda()
+		QuantidadeTextFormField.Text = "1"
 	End Sub
 
-	Protected Sub OKButton_Click(sender As Object, e As EventArgs)
+	Private Function ObterItemVenda() As ItemVenda
+		Dim idProduto As Integer = ProdutosDropDownList.SelectedValue
+		Dim produto As Produto = _produtoService.ObterPorId(idProduto)
+		Dim quantidade As Integer = Integer.Parse(QuantidadeTextFormField.Text)
+		Dim precoUnitario As Decimal = Decimal.Parse(PrecoUnitTextFormField.Text)
 
+		Return New ItemVenda(
+			idVenda:=1,
+			produto:=produto,
+			quantidade:=quantidade,
+			precoUnitario:=precoUnitario
+		)
+	End Function
+
+	Private Function CalcularTotalVenda() As Decimal
+		Dim total As Decimal = 0
+		For Each item As ItemVenda In ItensVenda
+			total += item.VlrTotalItem
+		Next
+
+		Return total
+	End Function
+
+	Protected Sub GerarVendaButton_Click(sender As Object, e As EventArgs)
+
+		If Not Page.IsValid Then
+			Return
+		End If
+
+		Dim venda As Venda = ObterVenda()
+		If venda.ItensVenda Is Nothing OrElse venda.ItensVenda.Count = 0 Then
+			PageUtils.MostrarMensagemViaToast("Nenhum item inserido na venda!", TiposMensagem.Erro, Me)
+			Return
+		End If
+
+		Try
+			_vendaService.Inserir(Venda)
+			PageUtils.MostrarMensagemViaToast("Venda realizada com sucesso!", TiposMensagem.Sucesso, Me)
+			ResetarCamposVenda()
+		Catch ex As Exception
+			PageUtils.MostrarMensagemViaToast(_errorHandler.HandleErrorMessage("Erro ao realizar venda", ex), TiposMensagem.Erro, Me)
+		End Try
+	End Sub
+
+	Private Function ObterVenda() As Venda
+		Dim itensVenda As List(Of ItemVenda) = Me.ItensVenda
+		Dim nomeCliente As String = NomeClienteTextFormField.Text
+
+		Return New Venda(
+			nomeCliente:=nomeCliente,
+			valorTotal:=CalcularTotalVenda(),
+			itensVenda:=itensVenda
+		)
+	End Function
+
+	Private Sub ResetarCamposVenda()
+		NomeClienteTextFormField.Text = String.Empty
+		ResetarCamposItemVenda()
+		ItensVenda = New List(Of ItemVenda)
+		BindItensVenda()
 	End Sub
 
 	Protected Sub VoltarButton_Click(sender As Object, e As EventArgs)
