@@ -29,7 +29,25 @@ Partial Public Class CadastroProduto
 	'''Auto-generated field.
 	'''To modify move field declaration from designer file to code-behind file.
 	'''</remarks>
-	Protected WithEvents FormAddEditProdutoTituloMedio As Global.System.Web.UI.UserControl
+	Protected WithEvents FormAddEditProdutoTituloMedio As Global.WebEcommerceGabriel.TituloMedio
+
+	'''<summary>
+	'''CodTextFormField control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents CodTextFormField As Global.WebEcommerceGabriel.TextFormField
+
+	'''<summary>
+	'''BuscarButton control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents BuscarButton As Global.System.Web.UI.WebControls.Button
 
 	'''<summary>
 	'''DescricaoTextFormField control.
@@ -38,16 +56,25 @@ Partial Public Class CadastroProduto
 	'''Auto-generated field.
 	'''To modify move field declaration from designer file to code-behind file.
 	'''</remarks>
-	Protected WithEvents DescricaoTextFormField As Global.System.Web.UI.UserControl
+	Protected WithEvents DescricaoTextFormField As Global.WebEcommerceGabriel.TextFormField
 
 	'''<summary>
-	'''VlrUnitarioTextFormField control.
+	'''PrecoUnitTextFormField control.
 	'''</summary>
 	'''<remarks>
 	'''Auto-generated field.
 	'''To modify move field declaration from designer file to code-behind file.
 	'''</remarks>
-	Protected WithEvents VlrUnitarioTextFormField As Global.System.Web.UI.UserControl
+	Protected WithEvents PrecoUnitTextFormField As Global.WebEcommerceGabriel.TextFormField
+
+	'''<summary>
+	'''SaldoEstoqueTextFormField control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents SaldoEstoqueTextFormField As Global.WebEcommerceGabriel.TextFormField
 
 	'''<summary>
 	'''CancelarButton control.
@@ -66,4 +93,13 @@ Partial Public Class CadastroProduto
 	'''To modify move field declaration from designer file to code-behind file.
 	'''</remarks>
 	Protected WithEvents SalvarButton As Global.System.Web.UI.WebControls.Button
+
+	'''<summary>
+	'''VoltarButton control.
+	'''</summary>
+	'''<remarks>
+	'''Auto-generated field.
+	'''To modify move field declaration from designer file to code-behind file.
+	'''</remarks>
+	Protected WithEvents VoltarButton As Global.System.Web.UI.WebControls.Button
 End Class
