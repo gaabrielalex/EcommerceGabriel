@@ -4,7 +4,8 @@ Imports System.Data.SqlClient
 Public Class BancoDeDados
 
 	Public Shared Function CriarConexao() As SqlConnection
-		Return New SqlConnection("Data Source=GABRIELALEX\SQLEXPRESS;Initial Catalog=BD_Projeto_Marlon;Integrated Security=True;Encrypt=False;TrustServerCertificate=True")
+		'Return New SqlConnection("Data Source=GABRIELALEX\SQLEXPRESS;Initial Catalog=BD_Projeto_Marlon;Integrated Security=True;Encrypt=False;TrustServerCertificate=True")
+		Return New SqlConnection("Data Source=GABRIELSILVA\SQLEXPRESS;Initial Catalog=BD_Projeto_Marlon;Integrated Security=True;Encrypt=False;TrustServerCertificate=True")
 	End Function
 
 	Public Function ConsultarReader(sql As String) As IEnumerable(Of IDataRecord)

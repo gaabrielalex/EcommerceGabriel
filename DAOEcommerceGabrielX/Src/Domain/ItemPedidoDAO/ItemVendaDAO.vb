@@ -11,13 +11,14 @@ Public Class ItemVendaDAO
 	End Sub
 
 	Public Function Inserir(itemVenda As ItemVenda) As Integer Implements IDAO(Of ItemVenda).Inserir
-		Dim query = "INSERT INTO item_venda (qtde, vlr_total_item, preco_unitario id_pedido, id_produto) 
-						VALUES (@qtde, @vlr_total_item, @preco_unitario, @id_pedido, @id_produto)
+		Dim query = "INSERT INTO item_venda (qtde, vlr_total_item, preco_unitario, id_venda, id_produto) 
+						VALUES (@qtde, @vlr_total_item, @preco_unitario, @id_venda, @id_produto)
 						SELECT SCOPE_IDENTITY();"
 		Dim parametros = New ParametroBDFactory() _
 								.Adicionar("@qtde", itemVenda.Quantidade) _
 								.Adicionar("@vlr_total_item", itemVenda.VlrTotalItem) _
-								.Adicionar("@id_pedido", itemVenda.IdVenda) _
+								.Adicionar("@preco_unitario", itemVenda.PrecoUnitario) _
+								.Adicionar("@id_venda", itemVenda.IdVenda) _
 								.Adicionar("@id_produto", itemVenda.Produto.IdProduto) _
 								.ObterParametros()
 

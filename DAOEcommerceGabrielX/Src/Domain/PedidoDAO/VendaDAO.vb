@@ -11,13 +11,12 @@ Public Class VendaDAO
 	End Sub
 
 	Public Function Inserir(venda As Venda) As Integer Implements IDAO(Of Venda).Inserir
-		Dim query = "INSERT INTO venda (data_venda, nome_cliente, vlr_total_venda) 
-					VALUES (@data_venda, @nome_cliente, @vlr_total_venda);
+		Dim query = "INSERT INTO venda (nome_cliente, vlr_total) 
+					VALUES (@nome_cliente, @vlr_total);
 					SELECT SCOPE_IDENTITY();"
 		Dim parametros = New ParametroBDFactory() _
-								.Adicionar("@data_venda", venda.DataVenda) _
 								.Adicionar("@nome_cliente", venda.NomeCliente) _
-								.Adicionar("@vlr_total_venda", venda.ValorTotal) _
+								.Adicionar("@vlr_total", venda.ValorTotal) _
 								.ObterParametros()
 
 		Try
