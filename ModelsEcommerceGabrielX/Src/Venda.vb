@@ -1,4 +1,6 @@
-﻿Public Class Venda
+﻿
+<Serializable>
+Public Class Venda
 
 	Public Property IdVenda As Integer
 	Public Property DataVenda As Date
