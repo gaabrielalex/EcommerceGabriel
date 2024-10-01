@@ -25,3 +25,30 @@ CREATE TABLE item_venda (
 	FOREIGN KEY(id_venda) REFERENCES venda(id_venda) ON DELETE CASCADE,
 	FOREIGN KEY(id_produto) REFERENCES produto(id_produto)
 );
+
+
+-- Trigers
+CREATE TRIGGER trg_update_saldo_produto
+ON item_venda
+AFTER INSERT
+AS
+BEGIN
+    -- Atualiza o saldo de estoque de cada produto conforme o item de venda inserido
+    UPDATE produto
+    SET saldo_estoque = saldo_estoque - inserted.qtde
+    FROM produto
+    INNER JOIN inserted ON produto.id_produto = inserted.id_produto
+    WHERE inserted.qtde > 0;
+
+    -- Verifica se algum produto ficou com saldo negativo após a atualização
+    IF EXISTS (
+        SELECT 1 
+        FROM produto 
+        WHERE saldo_estoque < 0
+    )
+    BEGIN
+        -- Se houver saldo negativo, desfaz a operação e lança um erro
+        ROLLBACK TRANSACTION;
+        THROW 50000, 'Não é permitido realizar a venda. Saldo insuficiente no estoque.', 1;
+    END
+END;

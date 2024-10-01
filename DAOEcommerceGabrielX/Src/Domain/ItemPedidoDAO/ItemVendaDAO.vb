@@ -12,8 +12,7 @@ Public Class ItemVendaDAO
 
 	Public Function Inserir(itemVenda As ItemVenda) As Integer Implements IDAO(Of ItemVenda).Inserir
 		Dim query = "INSERT INTO item_venda (qtde, vlr_total_item, preco_unitario, id_venda, id_produto) 
-						VALUES (@qtde, @vlr_total_item, @preco_unitario, @id_venda, @id_produto)
-						SELECT SCOPE_IDENTITY();"
+						VALUES (@qtde, @vlr_total_item, @preco_unitario, @id_venda, @id_produto)"
 		Dim parametros = New ParametroBDFactory() _
 								.Adicionar("@qtde", itemVenda.Quantidade) _
 								.Adicionar("@vlr_total_item", itemVenda.VlrTotalItem) _
@@ -23,8 +22,8 @@ Public Class ItemVendaDAO
 								.ObterParametros()
 
 		Try
-			Dim idItemVenda = Convert.ToInt32(_bancoDeDados.ExecutarComRetorno(query, parametros))
-			Return idItemVenda
+			_bancoDeDados.ExecutarComRetorno(query, parametros)
+			Return Nothing
 		Catch ex As Exception
 			Throw New Erro($"Erro ao inserir item da venda: {ex.ToString()}")
 		End Try

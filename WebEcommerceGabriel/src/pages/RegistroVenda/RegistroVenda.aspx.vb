@@ -19,9 +19,18 @@ Public Class RegistroVenda
 		End Get
 		Set(value As List(Of ItemVenda))
 			ViewState("ItensVenda") = value
-			TotalVendaLabel.Text = "Total Venda: R$ " + CalcularTotalVenda().ToString()
+
+			AtualizarLabelTotalVenda()
 		End Set
 	End Property
+
+	Private Sub AtualizarLabelTotalVenda()
+		Dim vlrTotalString As String = CalcularTotalVenda().ToString()
+		If vlrTotalString.Equals("0") Then
+			vlrTotalString = "0,00"
+		End If
+		TotalVendaLabel.Text = "Total Venda: R$ " + vlrTotalString
+	End Sub
 
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 		If Not Page.IsPostBack Then
@@ -67,6 +76,11 @@ Public Class RegistroVenda
 		Catch ex As Exception
 			PageUtils.MostrarMensagemViaToast(_errorHandler.HandleErrorMessage("Erro ao obter saldo em estoque", ex), TiposMensagem.Erro, Me)
 		End Try
+
+		If itemVenda.VlrTotalItem >= 1000000 Then
+			PageUtils.MostrarMensagemViaToast("Valor total do item não pode ser maior ou igual a 1.000.000,00! Valor informado: " + itemVenda.VlrTotalItem.ToString(), TiposMensagem.Erro, Me)
+			Return
+		End If
 
 		Dim ItensVenda As List(Of ItemVenda) = Me.ItensVenda
 		ItensVenda.Add(itemVenda)
