@@ -26,7 +26,7 @@ Public Class VendaService
 		Dim venda = _vendaDAO.ObterPorId(id)
 
 		If venda IsNot Nothing Then
-			venda.ItensVenda = _itemVendaDAO.ListarPorVenda(venda.IdVenda)
+			venda.ItensVenda = _itemVendaDAO.ListarPorVenda(id)
 		End If
 
 		Return venda
@@ -36,7 +36,7 @@ Public Class VendaService
 		Dim vendas = _vendaDAO.ListarTodos()
 
 		For Each venda In vendas
-			venda.ItensVenda = _itemVendaDAO.ListarPorVenda(venda.IdVenda)
+			venda.ItensVenda = _itemVendaDAO.ListarPorVenda(venda.IdVenda.Value)
 		Next
 
 		Return vendas

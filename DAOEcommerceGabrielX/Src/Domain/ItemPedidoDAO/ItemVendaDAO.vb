@@ -41,10 +41,13 @@ Public Class ItemVendaDAO
 		Throw New NotImplementedException()
 	End Function
 
-	Public Function ListarPorVenda(idPedido As Integer) As List(Of ItemVenda)
-		Dim query = "SELECT * FROM item_venda WHERE id_pedido = @id_pedido"
+	Public Function ListarPorVenda(idVenda As Integer) As List(Of ItemVenda)
+		Dim query = "SELECT *
+					FROM item_venda
+					INNER JOIN produto ON item_venda.id_produto = produto.id_produto
+					WHERE id_venda = @id_venda"
 		Dim parametros = New ParametroBDFactory() _
-							.Adicionar("@id_pedido", idPedido) _
+							.Adicionar("@id_venda", idVenda) _
 							.ObterParametros()
 
 		Try
@@ -60,8 +63,7 @@ Public Class ItemVendaDAO
 
 		For Each record In reader
 			Dim itemVenda = New ItemVenda(
-				idItemVenda:=record.GetInt32((record.GetOrdinal("id_item_venda"))),
-				idVenda:=record.GetInt32((record.GetOrdinal("id_pedido"))),
+				idVenda:=record.GetInt32((record.GetOrdinal("id_venda"))),
 				produto:=New Produto(
 					idProduto:=record.GetInt32((record.GetOrdinal("id_produto"))),
 					descricao:=record.GetString((record.GetOrdinal("descricao"))),
@@ -71,6 +73,8 @@ Public Class ItemVendaDAO
 				quantidade:=record.GetInt32((record.GetOrdinal("qtde"))),
 				precoUnitario:=record.GetDecimal((record.GetOrdinal("preco_unitario")))
 			)
+
+			listaItens.Add(itemVenda)
 		Next
 
 		Return listaItens

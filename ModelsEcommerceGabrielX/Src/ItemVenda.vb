@@ -2,7 +2,6 @@
 <Serializable>
 Public Class ItemVenda
 
-	Public Property IdItemVenda As Integer?
 	Public Property IdVenda As Integer
 	Public Property Produto As Produto
 	Public Property Quantidade As Integer
@@ -16,8 +15,7 @@ Public Class ItemVenda
 	Public Sub New()
 	End Sub
 
-	Public Sub New(idVenda As Integer, produto As Produto, quantidade As Integer, precoUnitario As Decimal, Optional idItemVenda As Integer? = Nothing)
-		Me.IdItemVenda = idItemVenda
+	Public Sub New(idVenda As Integer, produto As Produto, quantidade As Integer, precoUnitario As Decimal)
 		Me.IdVenda = idVenda
 		Me.Produto = produto
 		Me.Quantidade = quantidade

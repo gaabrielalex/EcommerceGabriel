@@ -32,7 +32,17 @@ Public Class VendaDAO
 	End Sub
 
 	Public Function ListarTodos() As List(Of Venda) Implements IDAO(Of Venda).ListarTodos
-		Throw New NotImplementedException()
+		Dim query = "SELECT p.*, 
+					COALESCE(SUM(ip.vlr_total_item), 0) AS vlr_total
+					FROM venda p
+						LEFT JOIN item_venda ip ON p.id_venda = ip.id_venda
+					GROUP BY p.id_venda, p.data_venda, p.nome_cliente, vlr_total"
+
+		Try
+			Return ConverterReaderParaListaDeObjetos(_bancoDeDados.ConsultarReader(query))
+		Catch ex As Exception
+			Throw New Erro($"Erro ao listar vendas: {ex.ToString()}")
+		End Try
 	End Function
 
 	Public Function ObterPorId(id As Integer) As Venda Implements IDAO(Of Venda).ObterPorId
@@ -41,7 +51,7 @@ Public Class VendaDAO
 					FROM venda p
 						LEFT JOIN item_venda ip ON p.id_venda = ip.id_venda
 					WHERE p.id_venda = @id_venda 
-					GROUP BY p.id_venda, p.data_venda, p.nome_cliente, vlr_total_venda"
+					GROUP BY p.id_venda, p.data_venda, p.nome_cliente, vlr_total"
 
 		Dim parametros = New ParametroBDFactory() _
 							.Adicionar("@id_venda", id) _
@@ -64,7 +74,7 @@ Public Class VendaDAO
 
 		For Each record In reader
 			Dim venda = New Venda(
-				idVenda:=record.GetInt32(record.GetOrdinal("id_pedido")),
+				idVenda:=record.GetInt32(record.GetOrdinal("id_venda")),
 				dataVenda:=record.GetDateTime(record.GetOrdinal("data_venda")),
 				nomeCliente:=record.GetString(record.GetOrdinal("nome_cliente")),
 				valorTotal:=record.GetDecimal(record.GetOrdinal("vlr_total"))

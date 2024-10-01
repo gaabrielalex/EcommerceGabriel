@@ -187,6 +187,9 @@
     <Content Include="src\pages\CadastroProduto\CadastroProduto.css" />
     <Content Include="src\pages\RegistroVenda\RegistroVenda.aspx" />
     <Content Include="src\pages\RegistroVenda\RegistroVenda.css" />
+    <Content Include="src\pages\VisualizarDetalhesVenda\VisualizarDetalhesVenda.aspx" />
+    <Content Include="src\pages\VisualizarVendas\VisualizarVendas.aspx" />
+    <Content Include="src\pages\VisualizarVendas\VisualizarVendas.css" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
   </ItemGroup>
@@ -276,6 +279,20 @@
     </Compile>
     <Compile Include="src\pages\RegistroVenda\RegistroVenda.aspx.vb">
       <DependentUpon>RegistroVenda.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="src\pages\VisualizarDetalhesVenda\VisualizarDetalhesVenda.aspx.designer.vb">
+      <DependentUpon>VisualizarDetalhesVenda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="src\pages\VisualizarDetalhesVenda\VisualizarDetalhesVenda.aspx.vb">
+      <DependentUpon>VisualizarDetalhesVenda.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="src\pages\VisualizarVendas\VisualizarVendas.aspx.designer.vb">
+      <DependentUpon>VisualizarVendas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="src\pages\VisualizarVendas\VisualizarVendas.aspx.vb">
+      <DependentUpon>VisualizarVendas.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="src\util\MensagemInfo.vb" />

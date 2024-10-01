@@ -25,12 +25,12 @@ Public Class RegistroVenda
 	End Property
 
 	Private Sub AtualizarLabelTotalVenda()
-		Dim vlrTotalString As String = CalcularTotalVenda().ToString()
-		If vlrTotalString.Equals("0") Then
-			vlrTotalString = "0,00"
-		End If
-		TotalVendaLabel.Text = "Total Venda: R$ " + vlrTotalString
+		Dim vlrTotal As Decimal = CalcularTotalVenda()
+
+		Dim vlrTotalString As String = vlrTotal.ToString("C2", System.Globalization.CultureInfo.CreateSpecificCulture("pt-BR"))
+		TotalVendaLabel.Text = "Total Venda: " + vlrTotalString
 	End Sub
+
 
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 		If Not Page.IsPostBack Then
