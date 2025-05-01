@@ -6,25 +6,25 @@ Este é um sistema de gerenciamento de pedidos desenvolvido em **VB.NET**, divid
 
 O sistema oferece as seguintes funcionalidades principais, focadas em operações CRUD (Criar, Ler, Atualizar e Deletar):
 
-1. **Gerenciamento de Pedidos**
+1. **Gerenciamento de Pedidos** 📦
    - Criação de novos pedidos.
    - Consulta de pedidos existentes.
    - Atualização de informações de pedidos.
    - Exclusão de pedidos.
 
-2. **Gerenciamento de Itens do Pedido**
+2. **Gerenciamento de Itens do Pedido** 📝
    - Adição de itens a um pedido.
    - Consulta de itens associados a um pedido.
    - Atualização de informações dos itens (ex.: quantidade).
    - Remoção de itens de um pedido.
 
-3. **Gerenciamento de Clientes**
+3. **Gerenciamento de Clientes** 👥
    - Cadastro de novos clientes.
    - Consulta de clientes existentes.
    - Atualização de informações dos clientes.
    - Exclusão de registros de clientes.
 
-4. **Gerenciamento de Produtos**
+4. **Gerenciamento de Produtos** 🛒
    - Cadastro de novos produtos.
    - Consulta de produtos disponíveis.
    - Atualização de informações dos produtos (ex.: preço, descrição).
@@ -37,7 +37,7 @@ O sistema oferece as seguintes funcionalidades principais, focadas em operaçõe
 - **DAOEcommerceGabrielX/** 📂  
   Contém a lógica de acesso a dados (Data Access Object).
 
-- **ModelsEcommerceGabrielX/** 📦  
+- **ModelsEcommerceGabrielX/** 🧳  
   Define os modelos e entidades do sistema.
 
 - **ServicesEcommerceGabrielX/** ⚙️  
